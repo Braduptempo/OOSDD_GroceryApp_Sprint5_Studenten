@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Grocery.App.ViewModels"
+             xmlns:models="clr-namespace:Grocery.Core.Models;assembly=Grocery.Core"
+             x:Class="Grocery.App.Views.CategoriesView"
+             x:DataType="viewModels:CategoriesViewModel"
+             Title="CategoriesView">
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Categorieen" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+    
+    <ContentPage.Content>
+        <Border Stroke="#C49B33" StrokeThickness="4" Padding="10" Margin="10" HorizontalOptions="FillAndExpand">
+            <CollectionView 
+                x:Name="CategoriesCollectionView"
+                ItemsSource="{Binding Categories}" 
+                Margin="20" HorizontalOptions="Center"
+                SelectionMode="Single"
+                SelectionChangedCommand="{Binding CategorySelectedCommand}"
+                SelectionChangedCommandParameter="{Binding Source={x:Reference CategoriesCollectionView}, Path=SelectedItem}">
+                
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="#" FontAttributes="Bold" HorizontalOptions="End"></Label>
+                        <Label Grid.Column="1" Text="Naam" FontAttributes="Bold" HorizontalOptions="End"></Label>
+                    </Grid>
+                    </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Category">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Id }" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+    </ContentPage.Content>
+</ContentPage>
