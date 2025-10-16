@@ -7,6 +7,6 @@
 
 	<ItemGroup>
 		<!-- Alleen als je MVVM source generators gebruikt -->
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 	</ItemGroup>
 </Project>
